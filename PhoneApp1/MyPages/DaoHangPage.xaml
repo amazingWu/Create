@@ -1,0 +1,91 @@
+﻿<phone:PhoneApplicationPage xmlns:MyLei="clr-namespace:PhoneApp1.MyLei" 
+    x:Class="PhoneApp1.MyPages.DaoHangPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="ButtonOption" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid x:Name="LayoutRoot" Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid Background="SkyBlue" Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Height="40" Width="50" Name="logo" Source="/photos/newstroy.png"/>
+                <TextBlock Grid.Column="1" FontSize="24" VerticalAlignment="Center" Foreground="Black" Text="创业思维"/>
+            </Grid>
+
+        </Grid>
+        <Border BorderThickness="0.5" BorderBrush="Black" Grid.Row="1">
+            <TextBlock Text="请选择分类" FontSize="50" Foreground="Black" Grid.Row="1"/>
+        </Border>
+        
+        <Grid Name="MyOptionsGrid" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox Name="option1" Grid.Column="0">
+                <Button Background="SkyBlue" Content="互联网特辑" Height="80" Width="180" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="电子商务" Height="80"  Width="180" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="公益事业" Height="80" Width="180" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="文化产业" Height="80" Width="180" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="金融" Height="80" Width="180" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="全部" Height="80" Width="180" Style="{StaticResource ButtonOption}"/>
+            </ListBox>
+            <ListBox Name="option2" Grid.Column="1">
+                <Button Background="SkyBlue" Content="我不挂科" Height="80" Width="280" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="出国必备" Height="80"  Width="280" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="考研必备" Height="80" Width="280" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="毕业转型考" Height="80" Width="280" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="阅读分享" Height="80" Width="280" Style="{StaticResource ButtonOption}"/>
+                <Button Background="SkyBlue" Content="全部" Height="80" Width="280" Style="{StaticResource ButtonOption}"/>
+            </ListBox>
+        </Grid>
+        <!--ContentPanel - 在此处放置其他内容-->
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="3">
+
+        </Border>
+
+
+
+
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar x:Name="appbar" IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="myPage"  Text="我的主页" IconUri="/photos/mypage.png"/>
+            <shell:ApplicationBarIconButton x:Name="sender" Text="确定发布" IconUri="/photos/newstroy.png"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="退出"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,91 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="PhoneApp1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrls="clr-namespace:PhoneApp1.Controls.ListBox2"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+    
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid x:Name="LayoutRoot" Background="WhiteSmoke" >
+        <Grid.Resources>
+            <DataTemplate x:Key="StroyTemplete">
+                <Grid Margin="0,0,0,10" MinWidth="450">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <Grid Height="auto" Grid.Row="0" Background="WhiteSmoke">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock VerticalAlignment="Center"  Width="auto" TextWrapping="Wrap" Grid.Column="0" FontSize="25"  Foreground="Black" Text="{Binding Path=Title}"/>
+                        <Image Source="{Binding Path=FirstImage}"  Grid.Column="1" />
+                        
+                    </Grid>
+                    <Grid Grid.Row="1" Background="Orange">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Name="origin" Text="{Binding Path=Author}" FontSize="15"  Foreground="Black"/>
+                        <TextBlock Grid.Column="2" Name="Time" Text="{Binding Path=PostTime}" FontSize="15" Foreground="Black"/>
+                        <TextBlock Grid.Column="3" Name="HuiFu" Text="回复" FontSize="15" Foreground="Black"/>
+                        <TextBlock Grid.Column="4" Name="HuiFuNum" Text="{Binding Path=Pv}" FontSize="15" Foreground="Black"/>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+        </Grid.Resources>
+        <controls:Pivot x:Name="MainPagePivot"  Foreground="Black" Title="创业思维" SelectionChanged="Pivot_SelectionChanged">
+            <controls:PivotItem x:Name="SharePI"  Header="自由分享" >
+                <Grid Margin="10,0,0,0">
+                    <ctrls:ListBox2 Name="ListBox1" Width="auto" ItemsSource="{Binding}" SelectionChanged="StroySelectClick"
+                                 ItemTemplate="{StaticResource StroyTemplete}" 
+                                 RefreshRequested="ShareRefreshRequested"
+                                    LoadRequested="ShareLoadRequest">
+                    </ctrls:ListBox2>
+                </Grid>
+            </controls:PivotItem>
+            <controls:PivotItem x:Name="OtherStroyPI" Header="创业故事区" >
+                <Grid  Margin="10,0,0,0">
+                    <ListBox Name="CreateStroy"  Background="LightGray"
+                                 ItemTemplate="{StaticResource StroyTemplete}">
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+            <controls:PivotItem x:Name="OtherThinkPI"  Header="市场分析" Background="LightGray" >
+                    <Grid  Margin="10,0,0,0">
+                    <ctrls:ListBox2 Name="ThinkStroy"  Background="LightGray" ItemsSource="{Binding}"
+                                 ItemTemplate="{StaticResource StroyTemplete}">
+                    </ctrls:ListBox2>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar x:Name="appbar" IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="myoption" Text="导航" IconUri="/Assets/ApplicationIcon.png" Click="myoption_Click"/>          
+            <shell:ApplicationBarIconButton x:Name="sender" Click="ToSendPage" Text="发布消息" IconUri="/photos/newstroy.png"/>
+            <shell:ApplicationBarIconButton x:Name="myPage" Click="ToMyPage" Text="我的主页" IconUri="/photos/mypage.png"/>
+            
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="设置"/>
+                <shell:ApplicationBarMenuItem Text="注销"/>
+                <shell:ApplicationBarMenuItem Text="退出"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>
